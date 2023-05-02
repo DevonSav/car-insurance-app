@@ -19,7 +19,7 @@ Kilometers driven		Insurance cost
  */
 function inRange(num, lower, upper)
 {
-	return lower <= num && num <= upper;
+    return lower <= num && num <= upper;
 }
 
 /**
@@ -28,41 +28,40 @@ function inRange(num, lower, upper)
  * @returns The vehicle insurance cost, or -1 if an error occurs.
  */
 function distanceToCost (kilometersDriven) {
-	const kmDistance = parseFloat(kilometersDriven);
+    const kmDistance = parseFloat(kilometersDriven);
 
-	if (inRange(kmDistance, 0, 20)) {
-		return 200;
-	}
-	else if (inRange(kmDistance, 21, 50)) {
-		let total = 200 + ((kmDistance - 20) * 1);
-		return total;
-	}
-	else if (inRange(kmDistance, 51, 100)) {
-		let total = 220 + ((kmDistance - 50) * 0.80);
-		return total;
-	}
-	else if (kmDistance >= 101) {
-		let total = 260 + ((kmDistance - 100) * 0.50);
-		return total;
-	}
-	else {
-		// Error occured
-		return -1;
-	}
+    if (inRange(kmDistance, 0, 20)) {
+        return 200;
+    }
+    else if (inRange(kmDistance, 21, 50)) {
+        let total = 200 + ((kmDistance - 20) * 1);
+        return total;
+    }
+    else if (inRange(kmDistance, 51, 100)) {
+        let total = 220 + ((kmDistance - 50) * 0.80);
+        return total;
+    }
+    else if (kmDistance >= 101) {
+        let total = 260 + ((kmDistance - 100) * 0.50);
+        return total;
+    }
+    else {
+        // Error occured
+        return -1;
+    }
 }
 
 /**
  * Calculates the total insurance cost for an array of vehicle distances.
- * @param {Number[]} vehicleDistArray An array of vehicle distances (kilometers driven).
+ * @param {Number[]} vehicleDistanceArray An array of vehicle distances (kilometers driven).
  * @returns Total insurance cost for all vehicles.
  */
-exports.calculateInsurance = function (vehicleDistArray) {
-	let costTotal = 0;
+export function calculateInsurance (vehicleDistanceArray) {
+    let costTotal = 0;
+    for (let i = 0; i < vehicleDistanceArray.length; i++) {
+        // Calculate and add the cost for each provided distance
+        costTotal += distanceToCost(vehicleDistanceArray[i]);
+    }
 
-	for (let i = 0; i < vehicleDistArray.length; i++) {
-		// Calculate and add the cost for each provided distance
-		costTotal += distanceToCost(vehicleDistArray[i]);
-	}
-
-	return costTotal;
+    return costTotal;
 }

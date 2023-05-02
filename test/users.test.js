@@ -1,15 +1,15 @@
-const expect = require('chai').expect;
-const request = require('supertest');	// Used for testing posting data
+let expect = require('chai').expect;
+let request = require('supertest');	// Used for testing posting data
 
-const app = 'http://localhost:3000';
+const APP = 'http://localhost:3000';
 
 // Declare some example data for testing
-const exampleDistArr = [
-	{"distance": 14},
-	{"distance": 38},
-	{"distance": 72},
-	{"distance": 100},
-	{"distance": 139}
+const EXAMPLE_DISTANCE_ARRAY = [
+    {"distance": 14},
+    {"distance": 38},
+    {"distance": 72},
+    {"distance": 100},
+    {"distance": 139}
 ];
 
 /*
@@ -28,31 +28,31 @@ Working:
 ------------------------------------------------
 Total						= R1195.1
 */
-const expectedTotalCost = 1195.1;
+const EXPECTED_TOTAL_COST = 1195.1;
 
 describe(`Insurance calculator page POST requests`, ()=>{
-	it('should respond with a total cost', function(done) {
-		request(app)
-			.post('/insurance')
-			.send(exampleDistArr)
-			.expect(200)
-			.expect('Content-Type', /json/)
-			.end(function(err, response) {
-				if (err) return done(err);	// rethrow to fail the test case
-				expect(response.body).to.have.property('totalCost');
-				return done();
-			});
-	});
-	it(`total cost should be equal to '${expectedTotalCost}'`, function(done) {
-		request(app)
-			.post('/insurance')
-			.send(exampleDistArr)
-			.end(function(err, response) {
-				if (err) return done(err);
-				expect(response.body.totalCost).to.equal(expectedTotalCost);
-				return done();
-			});
-	});
+    it('should respond with a total cost', function(done) {
+        request(APP)
+            .post('/insurance')
+            .send(EXAMPLE_DISTANCE_ARRAY)
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .end(function(error, response) {
+                if (error) return done(error);	// rethrow to fail the test case
+                expect(response.body).to.have.property('totalCost');
+                return done();
+            });
+    });
+    it(`total cost should be equal to '${EXPECTED_TOTAL_COST}'`, function(done) {
+        request(APP)
+            .post('/insurance')
+            .send(EXAMPLE_DISTANCE_ARRAY)
+            .end(function(error, response) {
+                if (error) return done(error);
+                expect(response.body.totalCost).to.equal(EXPECTED_TOTAL_COST);
+                return done();
+            });
+    });
 });
 
 /** REFERENCES
