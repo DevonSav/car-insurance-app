@@ -1,5 +1,5 @@
-let expect = require('chai').expect;
-let request = require('supertest');	// Used for testing posting data
+const expect = require('chai').expect;
+const request = require('supertest');	// Used for testing posting data
 
 const APP = 'http://localhost:3000';
 

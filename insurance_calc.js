@@ -56,7 +56,7 @@ function distanceToCost (kilometersDriven) {
  * @param {Number[]} vehicleDistanceArray An array of vehicle distances (kilometers driven).
  * @returns Total insurance cost for all vehicles.
  */
-export function calculateInsurance (vehicleDistanceArray) {
+exports.calculateInsurance = function (vehicleDistanceArray) {
     let costTotal = 0;
     for (let i = 0; i < vehicleDistanceArray.length; i++) {
         // Calculate and add the cost for each provided distance
